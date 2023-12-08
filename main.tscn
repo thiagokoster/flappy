@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://ds8x3g7eb244r"]
+
+[ext_resource type="PackedScene" uid="uid://phu6hp7g63y1" path="res://player/player.tscn" id="1_lsnlo"]
+[ext_resource type="PackedScene" uid="uid://b0fncp7a1ccd6" path="res://obstacle/obstacle.tscn" id="2_l8t31"]
+
+[node name="main" type="Node2D"]
+
+[node name="player" parent="." instance=ExtResource("1_lsnlo")]
+position = Vector2(444, 105)
+
+[node name="obstacle" parent="." instance=ExtResource("2_l8t31")]
+position = Vector2(922, 139)
+
+[connection signal="PlayerCollided" from="obstacle" to="player" method="OnCollision"]
