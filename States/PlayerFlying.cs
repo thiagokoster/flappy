@@ -43,7 +43,12 @@ public partial class PlayerFlying : State
 		player.Velocity = velocity;
 
 		var motion = velocity * (float)delta;
-		player.MoveAndCollide(motion);
+		var rightTestMotion = Vector2.Right * (float)delta * 200.0f;
+		var collision = player.MoveAndCollide(motion) ?? player.MoveAndCollide(rightTestMotion, testOnly: true);
+		if(collision != null)
+		{
+			GD.Print("Collision");
+		}
     }
 
 }

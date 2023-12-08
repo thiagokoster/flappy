@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://obstacle/obstacle.cs" id="1_eastw"]
 [ext_resource type="Texture2D" uid="uid://b1ol30myggigu" path="res://icon.svg" id="2_lwenq"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ci406"]
-size = Vector2(127, 127)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ggln5"]
+size = Vector2(117, 124)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ihhgm"]
 size = Vector2(122, 124)
@@ -13,16 +13,13 @@ size = Vector2(122, 124)
 sync_to_physics = false
 script = ExtResource("1_eastw")
 
-[node name="upArea" type="Area2D" parent="."]
-position = Vector2(0, -0.5)
+[node name="upArea" type="CollisionShape2D" parent="."]
+position = Vector2(3.5, 2)
+shape = SubResource("RectangleShape2D_ggln5")
 
 [node name="Sprite2D" type="Sprite2D" parent="upArea"]
-position = Vector2(0.5, 0.5)
+position = Vector2(-3, -2)
 texture = ExtResource("2_lwenq")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="upArea"]
-position = Vector2(0.5, 0)
-shape = SubResource("RectangleShape2D_ci406")
 
 [node name="bottom" type="CollisionShape2D" parent="."]
 position = Vector2(1, 396)
@@ -30,5 +27,3 @@ shape = SubResource("RectangleShape2D_ihhgm")
 
 [node name="Sprite2D" type="Sprite2D" parent="bottom"]
 texture = ExtResource("2_lwenq")
-
-[connection signal="body_entered" from="upArea" to="." method="OnBodyEntered"]
