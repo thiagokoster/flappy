@@ -1,14 +1,46 @@
-[gd_scene load_steps=3 format=3 uid="uid://ds8x3g7eb244r"]
+[gd_scene load_steps=7 format=3 uid="uid://ds8x3g7eb244r"]
 
-[ext_resource type="PackedScene" uid="uid://phu6hp7g63y1" path="res://player/player.tscn" id="1_lsnlo"]
+[ext_resource type="PackedScene" uid="uid://tb8t6pdkihhx" path="res://player/player.tscn" id="1_lsnlo"]
 [ext_resource type="PackedScene" uid="uid://b0fncp7a1ccd6" path="res://obstacle/obstacle.tscn" id="2_l8t31"]
+[ext_resource type="Texture2D" uid="uid://p6v4kl7221id" path="res://background.png" id="3_3pmoy"]
+[ext_resource type="Script" path="res://States/StateMachine.cs" id="4_odgqt"]
+[ext_resource type="Script" path="res://States/GameRunning.cs" id="5_cvb6w"]
+[ext_resource type="Script" path="res://States/GamePaused.cs" id="6_jnu6x"]
 
 [node name="main" type="Node2D"]
 
 [node name="player" parent="." instance=ExtResource("1_lsnlo")]
-position = Vector2(444, 105)
+position = Vector2(265, 193)
 
 [node name="obstacle" parent="." instance=ExtResource("2_l8t31")]
-position = Vector2(922, 139)
+position = Vector2(687, 352)
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("3_3pmoy")
+centered = false
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initialState")]
+process_mode = 3
+script = ExtResource("4_odgqt")
+initialState = NodePath("GameRunning")
+
+[node name="GameRunning" type="Node" parent="StateMachine"]
+script = ExtResource("5_cvb6w")
+
+[node name="GamePaused" type="Node" parent="StateMachine" node_paths=PackedStringArray("text")]
+script = ExtResource("6_jnu6x")
+text = NodePath("../../RichTextLabel")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+process_mode = 2
+visible = false
+offset_left = 223.0
+offset_top = 118.0
+offset_right = 399.0
+offset_bottom = 158.0
+text = "Press ESC to unpause"
+scroll_active = false
+autowrap_mode = 0
 
 [connection signal="PlayerCollided" from="obstacle" to="player" method="OnCollision"]

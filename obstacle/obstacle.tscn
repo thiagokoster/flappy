@@ -1,29 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://b0fncp7a1ccd6"]
+[gd_scene load_steps=4 format=3 uid="uid://b0fncp7a1ccd6"]
 
 [ext_resource type="Script" path="res://obstacle/obstacle.cs" id="1_eastw"]
-[ext_resource type="Texture2D" uid="uid://b1ol30myggigu" path="res://icon.svg" id="2_lwenq"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ggln5"]
-size = Vector2(117, 124)
+[ext_resource type="Texture2D" uid="uid://df33nstm55qh6" path="res://obstacle/obstacle.png" id="2_h377m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ihhgm"]
-size = Vector2(122, 124)
+size = Vector2(64, 269)
 
 [node name="obstacle" type="AnimatableBody2D"]
+position = Vector2(-4, -28)
 sync_to_physics = false
 script = ExtResource("1_eastw")
 
-[node name="upArea" type="CollisionShape2D" parent="."]
-position = Vector2(3.5, 2)
-shape = SubResource("RectangleShape2D_ggln5")
-
-[node name="Sprite2D" type="Sprite2D" parent="upArea"]
-position = Vector2(-3, -2)
-texture = ExtResource("2_lwenq")
-
 [node name="bottom" type="CollisionShape2D" parent="."]
-position = Vector2(1, 396)
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_ihhgm")
 
-[node name="Sprite2D" type="Sprite2D" parent="bottom"]
-texture = ExtResource("2_lwenq")
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture = ExtResource("2_h377m")

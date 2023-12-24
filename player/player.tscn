@@ -1,21 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://phu6hp7g63y1"]
+[gd_scene load_steps=6 format=3 uid="uid://tb8t6pdkihhx"]
 
 [ext_resource type="Script" path="res://player/player.cs" id="1_ic5dh"]
-[ext_resource type="Texture2D" uid="uid://b1ol30myggigu" path="res://icon.svg" id="2_40iko"]
+[ext_resource type="Texture2D" uid="uid://op5wwc0n4i3g" path="res://player/paper-plane.png" id="2_lxjq2"]
 [ext_resource type="Script" path="res://States/StateMachine.cs" id="3_0uslv"]
 [ext_resource type="Script" path="res://States/PlayerFlying.cs" id="4_bg1ar"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iwwer"]
-size = Vector2(125, 123)
+size = Vector2(30, 15)
 
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_ic5dh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_40iko")
+position = Vector2(41.0455, -21)
+texture = ExtResource("2_lxjq2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 0.5)
+position = Vector2(41, -23.5)
 shape = SubResource("RectangleShape2D_iwwer")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initialState")]

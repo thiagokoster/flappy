@@ -22,6 +22,7 @@ public partial class StateMachine : Node
         }
         if (initialState is not null)
         {
+            GD.Print($"Entering {currentState}");
             initialState.Enter();
             currentState = initialState;
         }
@@ -39,6 +40,7 @@ public partial class StateMachine : Node
 
     private void OnChildTransitioned(State state, string newStateName)
     {
+        GD.Print($"Triggered state transition to: {newStateName}");
         if (state != currentState)
         {
             return;
@@ -46,10 +48,13 @@ public partial class StateMachine : Node
 
         if(!states.TryGetValue(newStateName.ToLower(), out var newState))
         {
+            GD.Print($"State not found: {newStateName.ToLower()}");
             return;
         }
 
+        GD.Print($"State exit: {currentState.Name}");
         currentState?.Exit();
+        GD.Print($"State enter: {newState.Name}");
         newState.Enter();
         currentState = newState;
     }
