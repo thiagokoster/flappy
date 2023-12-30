@@ -5,7 +5,11 @@ public partial class PlayerFlying : State
 {
 	[Export]
 	private CharacterBody2D player;
+
+	[Export]
 	private float _gravity = 600.0f;
+
+	[Export]
 	private float _jumpSpped = -400.0f;
 	public override void _Ready()
 	{
@@ -50,5 +54,4 @@ public partial class PlayerFlying : State
 			GD.Print("Collision");
 		}
     }
-
 }

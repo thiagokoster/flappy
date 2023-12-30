@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class player : CharacterBody2D
 {
@@ -10,10 +9,9 @@ public partial class player : CharacterBody2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-	}
-
-	public void OnCollision()
-	{
-		GD.Print("I collided!");
+		var vel = Velocity;
+		vel += Vector2.Right * 300;
+		Rotation = vel.Angle();
+		QueueRedraw();
 	}
 }

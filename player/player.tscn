@@ -25,3 +25,5 @@ initialState = NodePath("PlayerFlying")
 [node name="PlayerFlying" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("4_bg1ar")
 player = NodePath("../..")
+_gravity = 700.0
+_jumpSpped = -300.0
