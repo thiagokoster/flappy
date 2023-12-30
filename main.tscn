@@ -1,19 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://ds8x3g7eb244r"]
+[gd_scene load_steps=8 format=3 uid="uid://ds8x3g7eb244r"]
 
 [ext_resource type="PackedScene" uid="uid://tb8t6pdkihhx" path="res://player/player.tscn" id="1_lsnlo"]
 [ext_resource type="PackedScene" uid="uid://b0fncp7a1ccd6" path="res://obstacle/obstacle.tscn" id="2_l8t31"]
 [ext_resource type="Texture2D" uid="uid://p6v4kl7221id" path="res://background.png" id="3_3pmoy"]
 [ext_resource type="Script" path="res://States/StateMachine.cs" id="4_odgqt"]
+[ext_resource type="Script" path="res://obstacle/ObstacleSpawner.cs" id="5_2kpja"]
 [ext_resource type="Script" path="res://States/GameRunning.cs" id="5_cvb6w"]
 [ext_resource type="Script" path="res://States/GamePaused.cs" id="6_jnu6x"]
 
 [node name="main" type="Node2D"]
 
 [node name="player" parent="." instance=ExtResource("1_lsnlo")]
-position = Vector2(265, 193)
-
-[node name="obstacle" parent="." instance=ExtResource("2_l8t31")]
-position = Vector2(687, 352)
+position = Vector2(73, 170)
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -1
@@ -27,6 +25,16 @@ initialState = NodePath("GameRunning")
 
 [node name="GameRunning" type="Node" parent="StateMachine"]
 script = ExtResource("5_cvb6w")
+
+[node name="ObstacleSpawner" type="Node" parent="StateMachine/GameRunning" node_paths=PackedStringArray("_spawnLocation", "_level")]
+script = ExtResource("5_2kpja")
+_obstacleScene = ExtResource("2_l8t31")
+_spawnLocation = NodePath("../../../Level/SpawnLocation")
+_level = NodePath("../../../Level")
+
+[node name="Timer" type="Timer" parent="StateMachine/GameRunning/ObstacleSpawner"]
+process_mode = 1
+autostart = true
 
 [node name="GamePaused" type="Node" parent="StateMachine" node_paths=PackedStringArray("text")]
 script = ExtResource("6_jnu6x")
@@ -43,4 +51,7 @@ text = "Press ESC to unpause"
 scroll_active = false
 autowrap_mode = 0
 
-[connection signal="PlayerCollided" from="obstacle" to="player" method="OnCollision"]
+[node name="Level" type="Node" parent="."]
+
+[node name="SpawnLocation" type="Node2D" parent="Level"]
+position = Vector2(688, 180)

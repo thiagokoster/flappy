@@ -1,4 +1,3 @@
-using System.Threading;
 using Godot;
 
 public partial class GameRunning : State
@@ -8,9 +7,7 @@ public partial class GameRunning : State
         GD.Print("The game is running!");
     }
 
-    public override void Exit()
-    {
-    }
+    public override void Exit(){}
 
     public override void PhysicsUpdate(double delta)
     {
@@ -20,6 +17,5 @@ public partial class GameRunning : State
 		}
     }
 
-    public override void Update(){
-    }
+    public override void Update(){}
 }
